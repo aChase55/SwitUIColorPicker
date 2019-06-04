@@ -14,6 +14,8 @@
 		4031B0A122A64D1200F76EF2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4031B0A022A64D1200F76EF2 /* Preview Assets.xcassets */; };
 		4031B0A422A64D1200F76EF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4031B0A222A64D1200F76EF2 /* LaunchScreen.storyboard */; };
 		4031B0AF22A64D1200F76EF2 /* SwitUIColorPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4031B0AE22A64D1200F76EF2 /* SwitUIColorPickerTests.swift */; };
+		4031B0BB22A64D4F00F76EF2 /* UIImage+ColorPicking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4031B0BA22A64D4F00F76EF2 /* UIImage+ColorPicking.swift */; };
+		4031B0BD22A64D6A00F76EF2 /* ImageColorPicking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4031B0BC22A64D6A00F76EF2 /* ImageColorPicking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		4031B0AA22A64D1200F76EF2 /* SwitUIColorPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwitUIColorPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4031B0AE22A64D1200F76EF2 /* SwitUIColorPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitUIColorPickerTests.swift; sourceTree = "<group>"; };
 		4031B0B022A64D1200F76EF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4031B0BA22A64D4F00F76EF2 /* UIImage+ColorPicking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorPicking.swift"; sourceTree = "<group>"; };
+		4031B0BC22A64D6A00F76EF2 /* ImageColorPicking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageColorPicking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,7 @@
 		4031B09622A64D1100F76EF2 /* SwitUIColorPicker */ = {
 			isa = PBXGroup;
 			children = (
+				4031B0B922A64D2C00F76EF2 /* ColorPicker */,
 				4031B09722A64D1100F76EF2 /* AppDelegate.swift */,
 				4031B09922A64D1100F76EF2 /* SceneDelegate.swift */,
 				4031B09B22A64D1100F76EF2 /* ContentView.swift */,
@@ -105,6 +110,15 @@
 				4031B0B022A64D1200F76EF2 /* Info.plist */,
 			);
 			path = SwitUIColorPickerTests;
+			sourceTree = "<group>";
+		};
+		4031B0B922A64D2C00F76EF2 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				4031B0BA22A64D4F00F76EF2 /* UIImage+ColorPicking.swift */,
+				4031B0BC22A64D6A00F76EF2 /* ImageColorPicking.swift */,
+			);
+			path = ColorPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +222,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4031B0BD22A64D6A00F76EF2 /* ImageColorPicking.swift in Sources */,
 				4031B09822A64D1100F76EF2 /* AppDelegate.swift in Sources */,
+				4031B0BB22A64D4F00F76EF2 /* UIImage+ColorPicking.swift in Sources */,
 				4031B09A22A64D1100F76EF2 /* SceneDelegate.swift in Sources */,
 				4031B09C22A64D1100F76EF2 /* ContentView.swift in Sources */,
 			);

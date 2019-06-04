@@ -7,17 +7,11 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView : View {
+    @EnvironmentObject var colorPickerData: ColorPickerData
     var body: some View {
-        Text("Hello World")
+        ColorPickerView(image: UIImage(named: "colors")!)
     }
 }
-
-#if DEBUG
-struct ContentView_Previews : PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-#endif
