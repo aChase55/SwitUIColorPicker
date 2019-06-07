@@ -72,7 +72,7 @@ extension UIImage {
         bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
         guard let imageContext = CGContext(data: imageData, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo) else { return nil }
         imageContext.draw(cgImage, in: CGRect(origin: CGPoint.zero, size: self.size))
-        
+        imageData.deallocate()
         return imageData
     }
     
