@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ContentView : View {
     @EnvironmentObject var colorPickerData: ColorPickerData
+    var image:UIImage = UIImage(named: "colors")! 
     var body: some View {
-        ColorPickerView(image: UIImage(named: "colors")!)
+        ColorPickerView(imageView: ImageView(image: image))
     }
 }

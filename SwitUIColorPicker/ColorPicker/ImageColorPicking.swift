@@ -51,10 +51,10 @@ struct ImageView: View {
 
 struct ColorPickerView: View {
     @EnvironmentObject var colorPickerData: ColorPickerData
-    var image:UIImage
+    var imageView: ImageView
     var body: some View {
         VStack {
-            ImageView(image: image)
+            imageView
             PickerView(color: self.colorPickerData.selectedColor)
                 .frame(height:300)
         }
