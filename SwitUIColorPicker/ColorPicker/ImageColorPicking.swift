@@ -34,7 +34,7 @@ struct ImageView: View {
     var image: UIImage
     
     func getColorAtPoint(_ value:CGPoint) {
-        self.colorPickerData.selectedColor = image.getPixelColor(from: value)!
+        self.colorPickerData.selectedColor = image.getPixelColor(point: value, alpha: true)!
     }
     
     var body:some View {

@@ -15,15 +15,17 @@ extension UIImage {
         return getPixelColor(from: point)
     }
     
+
     func getPixelColor(from point:CGPoint) -> UIColor? {
-        guard
-            let pixelBuffer = unSafeBitmapData()
-            else { return nil }
+        guard let pixelBuffer = unSafeBitmapData() else { return nil }
+        
         let pixel = pixelBuffer + Int(point.y) * Int(size.width) + Int(point.x)
-        let b = CGFloat(red(pixel.pointee))   / CGFloat(255.0)
-        let g = CGFloat(green(pixel.pointee)) / CGFloat(255.0)
-        let r = CGFloat(blue(pixel.pointee))  / CGFloat(255.0)
-        let a = CGFloat(alpha(pixel.pointee)) / CGFloat(255.0)
+        
+        let r = relativeValue(red(pixel.pointee))
+        let g = relativeValue(green(pixel.pointee))
+        let b = relativeValue(blue(pixel.pointee))
+        let a = relativeValue(alpha(pixel.pointee))
+        
         return UIColor(red: r, green: g, blue: b, alpha: a)
     }
     
@@ -45,10 +47,10 @@ extension UIImage {
             guard let pixelBuffer = unSafeBitmapData() else { return nil }
             
             let pixel = pixelBuffer + Int(point.y) * width + Int(point.x)
-            let b = CGFloat(red(pixel.pointee))   / CGFloat(255.0)
-            let g = CGFloat(green(pixel.pointee)) / CGFloat(255.0)
-            let r = CGFloat(blue(pixel.pointee))  / CGFloat(255.0)
-            let a = CGFloat(alpha(pixel.pointee)) / CGFloat(255.0)
+            let r = relativeValue(red(pixel.pointee))
+            let g = relativeValue(green(pixel.pointee))
+            let b = relativeValue(blue(pixel.pointee))
+            let a = relativeValue(alpha(pixel.pointee))
             return UIColor(red: r, green: g, blue: b, alpha: a)
         }
         return nil
@@ -66,32 +68,23 @@ extension UIImage {
         let maxPix = width * height
         
         let imageData =  calloc(maxPix, MemoryLayout<UInt32>.size).assumingMemoryBound(to: UInt32.self)
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        defer { imageData.deallocate() }
         
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
         var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
         bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
         guard let imageContext = CGContext(data: imageData, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo) else { return nil }
         imageContext.draw(cgImage, in: CGRect(origin: CGPoint.zero, size: self.size))
-        imageData.deallocate()
         return imageData
     }
     
-    func alpha(_ color: UInt32) -> UInt8 {
-        return UInt8((color >> 24) & 255)
-    }
+    func red(_ color: UInt32)   -> UInt8 { UInt8((color >> 0) & 255) }
+    func green(_ color: UInt32) -> UInt8 { UInt8((color >> 8) & 255) }
+    func blue(_ color: UInt32)  -> UInt8 { UInt8((color >> 16) & 255) }
+    func alpha(_ color: UInt32) -> UInt8 { UInt8((color >> 24) & 255) }
     
-    func red(_ color: UInt32) -> UInt8 {
-        return UInt8((color >> 16) & 255)
-    }
-    
-    func green(_ color: UInt32) -> UInt8 {
-        return UInt8((color >> 8) & 255)
-    }
-    
-    func blue(_ color: UInt32) -> UInt8 {
-        return UInt8((color >> 0) & 255)
-    }
-    
+    func relativeValue(_ p:UInt8) -> CGFloat { CGFloat(p) / 255.0 }
+
     func rgba(red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8) -> UInt32 {
         let a:UInt32 = UInt32(alpha)
         let r:UInt32 = UInt32(red)
